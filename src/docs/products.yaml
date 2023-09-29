@@ -8,6 +8,27 @@ paths:
       summary: Return all the products, can select the limit, page, query or sort of the products.
       tags:
         - Products
+      parameters:
+        - name: limit
+          in: path
+          required: false
+          description: Limit from objects to show
+          type: number
+        - name: page
+          in: path
+          required: false
+          description: Number of page to show
+          type: number
+        - name: query
+          in: path
+          required: false
+          description: Type of query to show
+          type: string
+        - name: sort
+          in: path
+          required: false
+          description: How to sort the products
+          type: string
       responses:
         "200":
           description: All the products has been returned.
@@ -17,7 +38,7 @@ paths:
                 type: array
                 items:
                   $ref: "#/components/schemas/Product"
-  /api/products/{id}:
+  /api/products/:id:
     get:
       summary: Return the product with the id searched if exists.
       tags:
@@ -27,8 +48,7 @@ paths:
           in: path
           required: true
           description: id from the product
-          schema:
-            type: string
+          type: string
       respones:
         "200":
           description: The product has been returned.
@@ -47,8 +67,7 @@ paths:
           in: path
           required: true
           description: id from the product
-          schema:
-            type: string
+          type: string
       requestBody:
         required: true
         content:
@@ -79,8 +98,7 @@ paths:
           in: path
           required: true
           description: id from the product
-          schema:
-            type: string
+          type: string
       respones:
         "204":
           description: The product has been deleted.
